@@ -23,6 +23,8 @@ const Register = () => {
     }
 
 
+
+
     return (
         <Fragment>
             <h1 className="large text-primary">Sign Up</h1>
