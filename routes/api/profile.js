@@ -10,6 +10,8 @@ const {
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
+
 
 // @route           GET api/profile/me
 // @description     Get current user's profile
@@ -161,7 +163,12 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
     try {
-        //remove profile, user
+        //remove user posts
+        await Post.deleteMany({
+            user: req.user.id
+        });
+
+        //remove profile and user
         await Profile.findOneAndRemove({
             user: req.user.id
         });
